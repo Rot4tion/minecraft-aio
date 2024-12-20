@@ -23,7 +23,8 @@ function createWindow(): void {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     },
-    titleBarStyle: 'hidden'
+    titleBarStyle: 'hiddenInset',
+    autoHideMenuBar: true
   })
   registerListeners(mainWindow)
   mainWindow.on('ready-to-show', () => {

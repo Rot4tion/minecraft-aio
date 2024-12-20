@@ -1,5 +1,5 @@
 import { createRoute } from '@tanstack/react-router'
-import HomePage from '../pages/HomePage'
+import DashboardPage from '../pages/HomePage'
 import { RootRoute } from './__root'
 import AboutPage from '@/pages/AboutPage'
 import TestPage from '@/pages/TestPage'
@@ -26,7 +26,7 @@ import TestPage from '@/pages/TestPage'
 export const HomeRoute = createRoute({
   getParentRoute: () => RootRoute,
   path: '/',
-  component: HomePage
+  component: DashboardPage
 })
 
 export const AboutRoute = createRoute({
