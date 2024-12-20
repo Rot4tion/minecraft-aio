@@ -33,7 +33,7 @@ export function Sidebar() {
           variant="link"
           asChild
         >
-          <Link to="/" className="flex gap-2 items-center">
+          <Link to="/dashboard" className="flex gap-2 items-center">
             <PanelsTopLeft className="mr-1 w-6 h-6" />
             <h1
               className={cn(

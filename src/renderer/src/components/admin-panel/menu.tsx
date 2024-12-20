@@ -18,7 +18,7 @@ export function Menu({ isOpen }: MenuProps) {
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
-      <nav className="mt-8 h-full w-full">
+      <nav className="mt-6 w-full h-full">
         <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn('w-full', groupLabel ? 'pt-5' : '')} key={index}>
@@ -30,8 +30,8 @@ export function Menu({ isOpen }: MenuProps) {
                 <TooltipProvider>
                   <Tooltip delayDuration={100}>
                     <TooltipTrigger className="w-full">
-                      <div className="w-full flex justify-center items-center">
-                        <Ellipsis className="h-5 w-5" />
+                      <div className="flex justify-center items-center w-full">
+                        <Ellipsis className="w-5 h-5" />
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side="right">
@@ -54,10 +54,10 @@ export function Menu({ isOpen }: MenuProps) {
                                 ? 'secondary'
                                 : 'ghost'
                             }
-                            className="w-full justify-start h-10 mb-1"
+                            className="justify-start mb-1 w-full h-10"
                             asChild
                           >
-                            <Link href={href}>
+                            <Link to={href}>
                               <span className={cn(isOpen === false ? '' : 'mr-4')}>
                                 <Icon size={18} />
                               </span>
@@ -92,14 +92,14 @@ export function Menu({ isOpen }: MenuProps) {
               )}
             </li>
           ))}
-          <li className="w-full grow flex items-end">
-            <TooltipProvider disableHoverableContent>
+          <li className="flex items-end w-full grow">
+            {/* <TooltipProvider disableHoverableContent>
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
                     onClick={() => {}}
                     variant="outline"
-                    className="w-full justify-center h-10 mt-5"
+                    className="justify-center mt-5 w-full h-10"
                   >
                     <span className={cn(isOpen === false ? '' : 'mr-4')}>
                       <LogOut size={18} />
@@ -116,7 +116,7 @@ export function Menu({ isOpen }: MenuProps) {
                 </TooltipTrigger>
                 {isOpen === false && <TooltipContent side="right">Sign out</TooltipContent>}
               </Tooltip>
-            </TooltipProvider>
+            </TooltipProvider> */}
           </li>
         </ul>
       </nav>
