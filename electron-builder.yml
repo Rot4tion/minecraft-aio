@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: sqlite-demo
+productName: minecraft-aio
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: sqlite-demo
+  executableName: minecraft-aio
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

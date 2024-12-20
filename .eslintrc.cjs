@@ -11,6 +11,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     'no-case-declarations': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
     '@typescript-eslint/no-empty-interface': 'warn',

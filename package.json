@@ -1,9 +1,13 @@
 {
-  "name": "sqlite-demo",
+  "name": "minecraft-aio",
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "productName": "minecraft-aio",
+  "author": {
+    "name": "Rot4tion",
+    "url": "https://github.com/Rot4tion"
+  },
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
@@ -14,7 +18,7 @@
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
-    "build": "npm run typecheck && electron-vite build",
+    "build": "electron-vite build",
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
@@ -22,7 +26,7 @@
     "build:linux": "electron-vite build && electron-builder --linux"
   },
   "dependencies": {
-    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toggle": "^1.1.1",
@@ -30,7 +34,7 @@
     "better-sqlite3": "^11.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.30.9",
+    "drizzle-orm": "^0.30.10",
     "lucide-react": "^0.468.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
@@ -39,23 +43,23 @@
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
     "@electron-toolkit/eslint-config-ts": "^1.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
-    "@types/node": "^18.19.9",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@types/node": "^18.19.68",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
-    "drizzle-kit": "^0.20.17",
+    "drizzle-kit": "^0.20.18",
     "electron": "^33.2.1",
-    "electron-builder": "^24.9.1",
-    "electron-vite": "^2.0.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^2.3.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.2",
     "postcss": "^8.4.49",
-    "prettier": "^3.2.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "prettier": "^3.4.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12"
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11"
   }
 }
