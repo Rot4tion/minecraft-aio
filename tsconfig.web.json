@@ -4,16 +4,37 @@
     "src/renderer/src/env.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.tsx",
-    "src/db/**/*"
+    "src/db/**/*",
+    "src/helpers/**/*",
+    "src/shared/**/*",""
   ],
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+
+      "@shared/*": [
+        "src/shared/*"
+      ],
       "@renderer/*": [
         "src/renderer/src/*"
-      ]
+      ],
+      "@/pages/*": [
+        "src/renderer/src/pages/*"
+      ],
+      "@/components/*": [
+        "src/renderer/src/components/*"
+      ],
+      "@/lib/*": [
+        "src/renderer/src/lib/*"
+      ],
+      "@/layouts/*": [
+        "src/renderer/src/layouts/*"
+      ],
+      "@/helpers/*": [
+        "src/helpers/*"
+      ],
     }
   }
 }
