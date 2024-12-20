@@ -4,8 +4,9 @@ import { Button } from '@/components/ui/button'
 import { useSidebar } from '@/hooks/use-sidebar'
 import { useStore } from '@/hooks/use-store'
 import { cn } from '@/lib/utils'
-import { PanelsTopLeft } from 'lucide-react'
+import { brand } from '@renderer/constants'
 import { Link } from '@tanstack/react-router'
+import { Pickaxe } from 'lucide-react'
 
 export function Sidebar() {
   const sidebar = useStore(useSidebar, (x) => x)
@@ -33,15 +34,15 @@ export function Sidebar() {
           variant="link"
           asChild
         >
-          <Link to="/dashboard" className="flex gap-2 items-center">
-            <PanelsTopLeft className="mr-1 w-6 h-6" />
+          <Link to="/dashboard" className="flex gap-2 items-center !no-underline">
+            <Pickaxe className="mr-1 w-6 h-6" />
             <h1
               className={cn(
                 'font-bold text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300',
                 !getOpenState() ? 'hidden opacity-0 -translate-x-96' : 'opacity-100 translate-x-0'
               )}
             >
-              Brand
+              {brand}
             </h1>
           </Link>
         </Button>
