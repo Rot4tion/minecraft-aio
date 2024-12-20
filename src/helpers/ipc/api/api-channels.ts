@@ -1,1 +1,1 @@
-export const DATABASE_EXECUTE_CHANNEL = "api:db:execute";
+export const DATABASE_EXECUTE_CHANNEL = 'api:db:execute'

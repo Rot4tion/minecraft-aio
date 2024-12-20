@@ -18,7 +18,7 @@ export default defineConfig({
         '@/components': resolve('src/renderer/src/components'),
         '@/lib': resolve('src/renderer/src/lib'),
         '@/layouts': resolve('src/renderer/src/layouts'),
-        '@/helpers': resolve('src/helpers'),
+        '@/helpers': resolve('src/helpers')
       }
     },
     plugins: [react()]

@@ -2,7 +2,11 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { execute, runMigrate } from './db'
+
+import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
+import registerListeners from '../helpers/ipc/listeners-register'
+import { execute, runMigrate } from '../shared/db/db'
+const inDevelopment = process.env.NODE_ENV === 'development'
 
 function createWindow(): void {
   // Create the browser window.
@@ -10,14 +14,18 @@ function createWindow(): void {
     width: 900,
     height: 670,
     show: false,
-    autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
+      devTools: inDevelopment,
+      contextIsolation: true,
+      nodeIntegration: true,
+      nodeIntegrationInSubFrames: false,
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
-    }
+    },
+    titleBarStyle: 'hidden'
   })
-
+  registerListeners(mainWindow)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -52,8 +60,7 @@ app.whenReady().then(async () => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
-  ipcMain.handle('db:execute', execute)
-
+  ipcMain.handle(DATABASE_EXECUTE_CHANNEL, execute)
   await runMigrate()
   createWindow()
 
