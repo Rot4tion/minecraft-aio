@@ -1,13 +1,19 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { electronApp, is, optimizer } from '@electron-toolkit/utils'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
 import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
 import registerListeners from '../helpers/ipc/listeners-register'
 import { execute, runMigrate } from '../shared/db/db'
-const inDevelopment = process.env.NODE_ENV === 'development'
+import { mcServerManager } from './core/mc-server-manager'
 
+function test() {
+  mcServerManager.pingUpdate({})
+}
+
+const inDevelopment = process.env.NODE_ENV === 'development'
+// const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -63,6 +69,7 @@ app.whenReady().then(async () => {
   ipcMain.on('ping', () => console.log('pong'))
   ipcMain.handle(DATABASE_EXECUTE_CHANNEL, execute)
   await runMigrate()
+  if (inDevelopment) test()
   createWindow()
 
   app.on('activate', function () {
