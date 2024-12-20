@@ -31,7 +31,7 @@ function toDrizzleResult(rows: Record<string, any> | Array<Record<string, any>>)
   }
 }
 
-export const execute = async (e: any, sqlstr: any, params: any, method: any) => {
+export const execute = async (e, sqlstr, params, method) => {
   const result = sqlite.prepare(sqlstr)
   const ret = result[method](...params)
   return toDrizzleResult(ret)

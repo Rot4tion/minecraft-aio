@@ -51,9 +51,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply m-0 border-border p-0;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground overflow-hidden;
+  }
+  .draglayer {
+    @apply bg-background;
+    -webkit-app-region: drag;
   }
 }

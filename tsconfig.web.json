@@ -9,6 +9,7 @@
     "src/types/**/*","src/types.d.ts"
   ],
   "compilerOptions": {
+    "noImplicitAny": false,
     "composite": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
