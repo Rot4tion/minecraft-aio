@@ -5,6 +5,7 @@ import { useSidebar } from '@/hooks/use-sidebar'
 import { useStore } from '@/hooks/use-store'
 import { cn } from '@/lib/utils'
 import { brand } from '@renderer/constants'
+import { routeConfig } from '@renderer/routes/routes.config'
 import { Link } from '@tanstack/react-router'
 import { Pickaxe } from 'lucide-react'
 
@@ -34,7 +35,7 @@ export function Sidebar() {
           variant="link"
           asChild
         >
-          <Link to="/dashboard" className="flex gap-2 items-center !no-underline">
+          <Link to={routeConfig.dashboard.path} className="flex gap-2 items-center !no-underline">
             <Pickaxe className="mr-1 w-6 h-6" />
             <h1
               className={cn(

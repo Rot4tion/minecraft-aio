@@ -1,4 +1,5 @@
-import { FlaskConical, LayoutGrid, LucideIcon, Settings } from 'lucide-react'
+import { routeConfig } from '@renderer/routes/routes.config'
+import { FlaskConical, LayoutGrid, LucideIcon, Server, Settings } from 'lucide-react'
 
 type Submenu = {
   href: string
@@ -25,14 +26,20 @@ export function getMenuList(pathname: string): Group[] {
       groupLabel: '',
       menus: [
         {
-          href: '/dashboard',
-          label: 'Dashboard',
+          href: routeConfig.dashboard.path,
+          label: routeConfig.dashboard.label,
           icon: LayoutGrid,
           submenus: []
         },
         {
-          href: '/settings',
-          label: 'Settings',
+          href: routeConfig.mcServers.path,
+          label: routeConfig.mcServers.label,
+          icon: Server,
+          submenus: []
+        },
+        {
+          href: routeConfig.settings.path,
+          label: routeConfig.settings.label,
           icon: Settings
         }
       ]
@@ -41,8 +48,8 @@ export function getMenuList(pathname: string): Group[] {
       groupLabel: 'Lab',
       menus: [
         {
-          href: '/test',
-          label: 'Test',
+          href: routeConfig.test.path,
+          label: routeConfig.test.label,
           icon: FlaskConical,
           submenus: []
         }

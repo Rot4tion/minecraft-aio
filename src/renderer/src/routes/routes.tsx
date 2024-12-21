@@ -1,8 +1,10 @@
-import TestPage from '@/pages/TestPage'
-import SettingsPage from '@renderer/pages/SettingsPage'
+import TestPage from '@renderer/pages/test.page'
+import SettingsPage from '@renderer/pages/setting.page'
 import { createRoute } from '@tanstack/react-router'
-import DashboardPage from '../pages/DashboardPage'
+import DashboardPage from '../pages/dashboard.page'
 import { RootRoute } from './__root'
+import { routeConfig } from './routes.config'
+import McServersPage from '@renderer/pages/mc-servers.page'
 
 // TODO: Steps to add a new route:
 // 1. Create a new page component in the '../pages/' directory (e.g., NewPage.tsx)
@@ -25,19 +27,24 @@ import { RootRoute } from './__root'
 
 export const HomeRoute = createRoute({
   getParentRoute: () => RootRoute,
-  path: '/dashboard',
+  path: routeConfig.dashboard.path,
   component: DashboardPage
 })
 
+export const McServerRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: routeConfig.mcServers.path,
+  component: McServersPage
+})
 export const SettingsRoute = createRoute({
   getParentRoute: () => RootRoute,
-  path: '/settings',
+  path: routeConfig.settings.path,
   component: SettingsPage
 })
 export const TestRoute = createRoute({
   getParentRoute: () => RootRoute,
-  path: '/test',
+  path: routeConfig.test.path,
   component: TestPage
 })
 
-export const rootTree = RootRoute.addChildren([HomeRoute, SettingsRoute, TestRoute])
+export const rootTree = RootRoute.addChildren([HomeRoute, McServerRoute, SettingsRoute, TestRoute])

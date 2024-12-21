@@ -6,6 +6,7 @@ export const MCServerTable = sqliteTable(
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
     host: text('host').notNull(),
     port: integer('port', { mode: 'number' }).notNull(),
+    name: text('name'),
     maxPlayers: integer('max_players', { mode: 'number' }),
     online: integer('online', { mode: 'number' }),
     latency: integer('latency', { mode: 'number' }),

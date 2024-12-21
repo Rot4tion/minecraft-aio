@@ -1,5 +1,10 @@
 import { WIN_CLOSE_CHANNEL, WIN_MAXIMIZE_CHANNEL, WIN_MINIMIZE_CHANNEL } from './window-channels'
 
+export interface ElectronWindow {
+  minimize: () => Promise<void>
+  maximize: () => Promise<void>
+  close: () => Promise<void>
+}
 export function exposeWindowContext() {
   const { contextBridge, ipcRenderer } = window.require('electron')
   contextBridge.exposeInMainWorld('electronWindow', {

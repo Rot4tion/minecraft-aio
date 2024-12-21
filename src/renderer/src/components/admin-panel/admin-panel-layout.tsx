@@ -1,4 +1,3 @@
-import { Footer } from '@/components/admin-panel/footer'
 import { Sidebar } from '@/components/admin-panel/sidebar'
 import { useSidebar } from '@/hooks/use-sidebar'
 import { useStore } from '@/hooks/use-store'

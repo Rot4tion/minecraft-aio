@@ -1,17 +1,31 @@
 import protocol, { NewPingResult, OldPingResult, PingOptions } from 'minecraft-protocol'
 import { db } from '../../shared/db/db'
 import { MCServerTable } from '../../shared/db/schema/mc-server.schema'
+import { eq } from 'drizzle-orm'
 
 class MCServerManager {
-  constructor() {}
-
-  async pingUpdate(options: PingOptions) {
-    const res: any = await protocol.ping(options)
+  async refresh(serverId: number) {
+    const server = await db.select().from(MCServerTable).where(eq(MCServerTable.id, serverId)).get()
+    if (!server) {
+      throw new Error('Server not found')
+    }
+    const res = await this.ping({ host: server.host, port: server.port })
+    const dbRes = await db
+      .update(MCServerTable)
+      .set(res)
+      .where(eq(MCServerTable.id, serverId))
+      .returning()
+      .get()
+    console.log('🚀 ~ MCServerManager ~ refresh ~ dbRes:', dbRes)
+    return dbRes
+  }
+  async ping(options: PingOptions & { host: string }) {
     const data: typeof MCServerTable.$inferInsert = {
-      host: options.host ?? '127.0.0.1',
-      port: options.port ?? 25565,
+      host: options.host,
+      port: options.port || 25565,
       lastPing: new Date()
     }
+    const res: any = await protocol.ping({ host: options.host, port: options.port || 25565 })
     if (res.maxPlayers != undefined) {
       const oldResult: OldPingResult = res
       data.description = oldResult.motd
@@ -34,22 +48,7 @@ class MCServerManager {
     }
     console.log('Minecraft Server:', res)
 
-    const dbRes = await db
-      .insert(MCServerTable)
-      .values(data)
-      .onConflictDoUpdate({
-        target: [MCServerTable.host, MCServerTable.port],
-        set: {
-          description: data.description,
-          version: data.version,
-          protocol: data.protocol,
-          online: data.online,
-          maxPlayers: data.maxPlayers,
-          lastPing: data.lastPing
-        }
-      })
-      .returning({ id: MCServerTable.id, host: MCServerTable.host, port: MCServerTable.port })
-    console.log('🚀 ~ MCServerManager ~ ping ~ dbRes:', dbRes)
+    return data
   }
 }
 const mcServerManager = new MCServerManager()

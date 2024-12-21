@@ -6,7 +6,7 @@
     "src/renderer/src/**/*.tsx",
     "src/helpers/**/*",
     "src/shared/**/*",
-    "src/types/**/*","src/types.d.ts"
+    "src/types/**/*","src/global.d.ts"
   ],
   "compilerOptions": {
     "noImplicitAny": false,

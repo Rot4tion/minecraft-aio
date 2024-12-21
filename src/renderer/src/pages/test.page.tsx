@@ -1,22 +1,15 @@
 import { Button } from '@/components/ui/button'
 import { ContentLayout } from '@renderer/components/admin-panel/content-layout'
-import { MCServerTable } from '@shared/db/schema/mc-server.schema'
+import { routeConfig } from '@renderer/routes/routes.config'
+import { useGlobalStore } from '@renderer/store/global-store'
 import { users } from '@shared/db/schema/user.schema'
 import { webDb } from '@shared/db/webDB'
-import { useEffect, useState } from 'react'
 
 export default function TestPage() {
-  const [data, setData] = useState<any[]>([])
-  useEffect(() => {
-    const fetchData = async () => {
-      setData(await webDb.select().from(MCServerTable))
-    }
-
-    fetchData()
-  }, [])
+  const mcServers = useGlobalStore((x) => x.mcServers)
 
   return (
-    <ContentLayout title="Test">
+    <ContentLayout title={routeConfig.test.label}>
       <div className="flex flex-col gap-2 justify-center items-center h-screen">
         <h1 className="text-4xl font-bold">Test Page</h1>
         <Button
@@ -30,7 +23,7 @@ export default function TestPage() {
         >
           Test
         </Button>
-        <div>{JSON.stringify(data, null, 2)}</div>
+        <div>{JSON.stringify(mcServers, null, 2)}</div>
       </div>
     </ContentLayout>
   )

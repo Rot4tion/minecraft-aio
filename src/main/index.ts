@@ -9,7 +9,7 @@ import { execute, runMigrate } from '../shared/db/db'
 import { mcServerManager } from './core/mc-server-manager'
 
 function test() {
-  mcServerManager.pingUpdate({})
+  // mcServerManager.ping({ host: '127.0.0.1', port: 25565 })
 }
 
 const inDevelopment = process.env.NODE_ENV === 'development'

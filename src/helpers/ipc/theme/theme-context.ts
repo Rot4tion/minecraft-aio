@@ -5,7 +5,13 @@ import {
   THEME_MODE_SYSTEM_CHANNEL,
   THEME_MODE_TOGGLE_CHANNEL
 } from './theme-channels'
-
+export interface ThemeModeContext {
+  toggle: () => Promise<boolean>
+  dark: () => Promise<void>
+  light: () => Promise<void>
+  system: () => Promise<boolean>
+  current: () => Promise<'dark' | 'light' | 'system'>
+}
 export function exposeThemeContext() {
   const { contextBridge, ipcRenderer } = window.require('electron')
   contextBridge.exposeInMainWorld('themeMode', {

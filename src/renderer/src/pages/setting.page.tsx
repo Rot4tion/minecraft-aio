@@ -9,6 +9,7 @@ import {
 } from '@renderer/components/ui/tooltip'
 import { useSidebar } from '@renderer/hooks/use-sidebar'
 import { useStore } from '@renderer/hooks/use-store'
+import { routeConfig } from '@renderer/routes/routes.config'
 
 export default function SettingsPage() {
   const sidebar = useStore(useSidebar, (x) => x)!
@@ -16,7 +17,7 @@ export default function SettingsPage() {
   const { settings, setSettings } = sidebar
 
   return (
-    <ContentLayout title="Settings">
+    <ContentLayout title={routeConfig.settings.label}>
       <TooltipProvider>
         <div className="flex gap-6 mt-6">
           <Tooltip>
