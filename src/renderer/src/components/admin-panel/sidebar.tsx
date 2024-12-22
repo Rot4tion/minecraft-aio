@@ -25,7 +25,7 @@ export function Sidebar() {
       <div
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        className="flex overflow-y-auto relative flex-col px-3 py-4 h-full shadow-md dark:shadow-zinc-800"
+        className="flex relative flex-col px-3 py-4 h-full shadow-md dark:shadow-zinc-800"
       >
         <Button
           className={cn(
