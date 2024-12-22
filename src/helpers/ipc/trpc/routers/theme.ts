@@ -2,14 +2,6 @@ import { nativeTheme } from 'electron'
 import { publicProcedure, router } from '../trpc'
 
 export const themeRouter = router({
-  // greeting: t.procedure.input(z.object({ name: z.string() })).query((req) => {
-  //   const { input } = req
-
-  //   ee.emit('greeting', `Greeted ${input.name}`)
-  //   return {
-  //     text: `Hello ${input.name}` as const
-  //   }
-  // }),
   toggleTheme: publicProcedure.mutation(() => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = 'light'

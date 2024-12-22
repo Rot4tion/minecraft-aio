@@ -1,9 +1,11 @@
+import { trpcClient } from './ipc/trpc/trpc-client'
+
 export async function minimizeWindow() {
-  await window.electronWindow.minimize()
+  await trpcClient.window.minimize.mutate()
 }
 export async function maximizeWindow() {
-  await window.electronWindow.maximize()
+  await trpcClient.window.maximize.mutate()
 }
 export async function closeWindow() {
-  await window.electronWindow.close()
+  await trpcClient.window.close.mutate()
 }

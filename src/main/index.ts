@@ -34,7 +34,13 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-  createIPCHandler({ router: appRouter, windows: [mainWindow] })
+  createIPCHandler({
+    router: appRouter,
+    windows: [mainWindow],
+    createContext: async function (opts) {
+      return { mainWindow }
+    }
+  })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
