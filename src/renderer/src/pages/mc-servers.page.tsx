@@ -45,7 +45,7 @@ function AddServerDialog() {
     const data = values.address.split(':')
     const host = data[0]
     const port = Number(data[1]) || 25565
-    await addServer({
+    addServer({
       name: values.name,
       host,
       port
