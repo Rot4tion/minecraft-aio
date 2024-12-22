@@ -7,6 +7,9 @@ import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
 import registerListeners from '../helpers/ipc/listeners-register'
 import { execute, runMigrate } from '../shared/db/db'
 
+import { createIPCHandler } from 'electron-trpc/main'
+import { appRouter } from '../helpers/ipc/trpc/app-router'
+
 const inDevelopment = process.env.NODE_ENV === 'development'
 // const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
 function createWindow(): void {
@@ -31,6 +34,7 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+  createIPCHandler({ router: appRouter, windows: [mainWindow] })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)

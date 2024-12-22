@@ -1,11 +1,9 @@
 import { BrowserWindow } from 'electron'
 import { addMCServerManagerEventListeners } from './mc-server-manager/mc-server-manager-listeners'
-import { addThemeEventListeners } from './theme/theme-listeners'
 import { addWindowEventListeners } from './window/window-listeners'
 
 export default function registerListeners(mainWindow: BrowserWindow) {
   addWindowEventListeners(mainWindow)
-  addThemeEventListeners()
 
   addMCServerManagerEventListeners()
 }
