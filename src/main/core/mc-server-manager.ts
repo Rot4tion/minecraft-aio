@@ -9,14 +9,18 @@ class MCServerManager {
     if (!server) {
       throw new Error('Server not found')
     }
-    const res = await this.ping({ host: server.host, port: server.port })
+    let data: any = {}
+    try {
+      data = await this.ping({ host: server.host, port: server.port })
+    } catch (error) {
+      data = { lastPing: new Date(), latency: -1, online: 0, maxPlayers: 0 }
+    }
     const dbRes = await db
       .update(MCServerTable)
-      .set(res)
+      .set(data)
       .where(eq(MCServerTable.id, serverId))
       .returning()
       .get()
-    console.log('🚀 ~ MCServerManager ~ refresh ~ dbRes:', dbRes)
     return dbRes
   }
   async ping(options: PingOptions & { host: string }) {

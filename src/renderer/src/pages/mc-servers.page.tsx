@@ -29,8 +29,11 @@ function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
               {server.online}/{server.maxPlayers}
             </div>
             <div className="flex">
-              <ChartNoAxesColumnIncreasing className="text-green-500" size={20} />
-              <span className="text-sm">{server.latency}ms</span>
+              <ChartNoAxesColumnIncreasing
+                className={`${server.latency == null || server?.latency == -1 ? 'text-red-500' : 'text-green-500'}`}
+                size={20}
+              />
+              {server?.latency != -1 && <span className="text-sm">{server.latency}ms</span>}
             </div>
           </div>
         </div>

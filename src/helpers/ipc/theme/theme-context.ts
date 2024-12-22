@@ -20,5 +20,5 @@ export function exposeThemeContext() {
     dark: () => ipcRenderer.invoke(THEME_MODE_DARK_CHANNEL),
     light: () => ipcRenderer.invoke(THEME_MODE_LIGHT_CHANNEL),
     system: () => ipcRenderer.invoke(THEME_MODE_SYSTEM_CHANNEL)
-  })
+  } satisfies ThemeModeContext)
 }
