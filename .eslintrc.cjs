@@ -16,7 +16,13 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn'],
     '@typescript-eslint/no-empty-interface': 'warn',
     '@typescript-eslint/no-empty-function': 'warn',
-    'no-empty': 'warn'
+    'no-empty': 'warn',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto'
+      }
+    ]
   },
   settings: {
     react: {
