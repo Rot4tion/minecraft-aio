@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from 'date-fns'
 import McText from 'mctext-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -25,6 +26,7 @@ import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { ChartNoAxesColumnIncreasing, RotateCcw } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useEffect, useReducer, useState } from 'react'
 
 const AddMCServerSchema = z.object({
   name: z.string().min(1),
@@ -94,11 +96,25 @@ function AddServerDialog() {
     </Dialog>
   )
 }
+function LastUpdate({ timestamp }: { timestamp: Date }) {
+  const [, forceUpdate] = useReducer((x) => !x, false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Force re-render
+      forceUpdate()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return <p>{formatDistanceToNow(timestamp, { addSuffix: true, includeSeconds: true })}</p>
+}
 function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
-  console.log('🚀 ~ ServerCard ~ server:', server)
   const refreshServer = useGlobalStore((x) => x.refreshServer)
+
   return (
-    <Card className="">
+    <Card className="text-xs">
       <CardHeader className="items-end p-0">
         <Button
           variant={'ghost'}
@@ -138,6 +154,16 @@ function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
             </div>
 
             <p>{server.version}</p>
+          </div>
+          <div className="flex justify-between">
+            <div></div>
+            <div>
+              {server.lastPing && (
+                <p>
+                  <LastUpdate timestamp={server.lastPing} />
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </CardContent>
