@@ -1,7 +1,7 @@
 import { nativeTheme } from 'electron'
 import { publicProcedure, router } from '../trpc'
 
-export const themeRouter = router({
+export const themeTRPC = router({
   toggleTheme: publicProcedure.mutation(() => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = 'light'
