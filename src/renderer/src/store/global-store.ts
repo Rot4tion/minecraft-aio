@@ -1,3 +1,4 @@
+import { trpcClient } from '@/helpers/ipc/trpc/trpc-client'
 import { MCServerTable } from '@shared/db/schema/mc-server.schema'
 import { webDb } from '@shared/db/webDB'
 import { create } from 'zustand'
@@ -23,7 +24,7 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
     set({ isDataLoaded: true })
   },
   refreshServer: async (serverId: number) => {
-    const server = await window.mcServerManager.refresh(serverId)
+    const server = await trpcClient.mcServerManager.refresh.mutate({ serverId })
     set((state) => {
       const idx = state.mcServers.findIndex((x) => x.id === server.id)
       if (idx === -1) {
@@ -42,7 +43,7 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
       .values(server)
       .returning({ id: MCServerTable.id })
       .get()
-    const updatedServer = await window.mcServerManager.refresh(dbServer.id)
+    const updatedServer = await trpcClient.mcServerManager.refresh.mutate({ serverId: dbServer.id })
     set((state) => {
       state.mcServers.push(updatedServer)
       return {

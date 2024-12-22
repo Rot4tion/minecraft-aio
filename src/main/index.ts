@@ -4,7 +4,7 @@ import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
 
 import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
-import registerListeners from '../helpers/ipc/listeners-register'
+
 import { execute, runMigrate } from '../shared/db/db'
 
 import { createIPCHandler } from 'electron-trpc/main'
@@ -30,14 +30,14 @@ function createWindow(): void {
     titleBarStyle: 'hiddenInset',
     autoHideMenuBar: true
   })
-  registerListeners(mainWindow)
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
   createIPCHandler({
     router: appRouter,
     windows: [mainWindow],
-    createContext: async function (opts) {
+    createContext: async function () {
       return { mainWindow }
     }
   })

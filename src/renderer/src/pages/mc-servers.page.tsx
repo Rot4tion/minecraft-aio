@@ -1,5 +1,3 @@
-import { formatDistanceToNow } from 'date-fns'
-import McText from 'mctext-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Dialog,
@@ -23,10 +21,12 @@ import {
 import { Input } from '@renderer/components/ui/input'
 import { routeConfig } from '@renderer/routes/routes.config'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
+import { formatDistanceToNow } from 'date-fns'
 import { ChartNoAxesColumnIncreasing, RotateCcw } from 'lucide-react'
+import McText from 'mctext-react'
+import { useEffect, useReducer } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useEffect, useReducer, useState } from 'react'
 
 const AddMCServerSchema = z.object({
   name: z.string().min(1),

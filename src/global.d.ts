@@ -6,9 +6,3 @@ declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string
 declare const MAIN_WINDOW_VITE_NAME: string
 
 // Preload types
-
-declare interface Window {
-  themeMode: import('./helpers/ipc/theme/theme-context').ThemeModeContext
-  electronWindow: import('./helpers/ipc/window/window-context').ElectronWindow
-  mcServerManager: import('./helpers/ipc/mc-server-manager/mc-server-manager-context').MCServerManagerIPC
-}

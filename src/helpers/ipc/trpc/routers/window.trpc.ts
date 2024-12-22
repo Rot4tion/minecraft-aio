@@ -1,4 +1,3 @@
-import { nativeTheme } from 'electron'
 import { publicProcedure, router } from '../trpc'
 
 export const windowRouter = router({

@@ -1,9 +1,11 @@
+import { mcServerManagerRouter } from './routers/mc-server-manager.trpc'
+import { themeRouter } from './routers/theme.trpc'
+import { windowRouter } from './routers/window.trpc'
 import { router } from './trpc'
-import { themeRouter } from './routers/theme'
-import { windowRouter } from './routers/window'
 
 export const appRouter = router({
   theme: themeRouter,
-  window: windowRouter
+  window: windowRouter,
+  mcServerManager: mcServerManagerRouter
 })
 export type AppRouter = typeof appRouter
