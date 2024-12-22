@@ -28,6 +28,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
+    "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-collapsible": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
@@ -46,14 +47,17 @@
     "drizzle-orm": "^0.30.10",
     "immer": "^10.1.1",
     "lucide-react": "^0.468.0",
+    "mctext-react": "^1.1.0",
     "minecraft-protocol": "^1.51.0",
     "mineflayer": "^4.23.0",
     "mineflayer-auto-eat": "^5.0.0",
     "mineflayer-pathfinder": "^2.4.5",
     "next-themes": "^0.4.4",
     "prismarine-viewer": "^1.28.0",
+    "react-hook-form": "^7.54.2",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },
   "devDependencies": {

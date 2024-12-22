@@ -39,10 +39,7 @@ class MCServerManager {
       data.maxPlayers = oldResult.maxPlayers
     } else {
       const newResult: NewPingResult = res
-      data.description =
-        typeof newResult.description === 'string'
-          ? newResult.description
-          : newResult.description.text
+      data.newDescription = newResult.description
       data.version = newResult.version.name
       data.protocol = newResult.version.protocol
       data.latency = newResult.latency
@@ -50,8 +47,6 @@ class MCServerManager {
       data.online = newResult.players.online
       data.maxPlayers = newResult.players.max
     }
-    console.log('Minecraft Server:', res)
-
     return data
   }
 }

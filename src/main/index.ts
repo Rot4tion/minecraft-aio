@@ -6,11 +6,6 @@ import icon from '../../resources/icon.png?asset'
 import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
 import registerListeners from '../helpers/ipc/listeners-register'
 import { execute, runMigrate } from '../shared/db/db'
-import { mcServerManager } from './core/mc-server-manager'
-
-function test() {
-  // mcServerManager.ping({ host: '127.0.0.1', port: 25565 })
-}
 
 const inDevelopment = process.env.NODE_ENV === 'development'
 // const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
@@ -69,7 +64,6 @@ app.whenReady().then(async () => {
   ipcMain.on('ping', () => console.log('pong'))
   ipcMain.handle(DATABASE_EXECUTE_CHANNEL, execute)
   await runMigrate()
-  if (inDevelopment) test()
   createWindow()
 
   app.on('activate', function () {

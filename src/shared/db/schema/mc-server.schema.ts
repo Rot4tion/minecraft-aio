@@ -12,6 +12,7 @@ export const MCServerTable = sqliteTable(
     latency: integer('latency', { mode: 'number' }),
     favicon: text('favicon'),
     description: text('description'),
+    newDescription: text('new_description', { mode: 'json' }),
     protocol: integer('protocol', { mode: 'number' }),
     version: text('version'),
     lastPing: integer('last_ping', { mode: 'timestamp' })
