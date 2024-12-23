@@ -10,11 +10,12 @@ import { ContextMenuLabel } from '@radix-ui/react-context-menu'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { ChartNoAxesColumnIncreasing, RotateCcw, Trash } from 'lucide-react'
 import { LastUpdate } from './last-update'
+import { ClickToCopy } from '../click-to-copy'
 
 export function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
   const refreshServer = useGlobalStore((x) => x.refreshServer)
   const deleteServer = useGlobalStore((x) => x.deleteServer)
-
+  const host = `${server.host}${server.port !== 25565 ? ':' + server.port : ''}`
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
@@ -28,7 +29,9 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
             />
             <div className="w-full min-w-0">
               <div className="flex justify-between text-lg font-bold">
-                <div className="truncate">{`${server.host}${server.port !== 25565 ? ':' + server.port : ''}`}</div>
+                <ClickToCopy text={host}>
+                  <div className="truncate cursor-pointer hover:underline">{host}</div>
+                </ClickToCopy>
                 <div className="flex flex-shrink-0 space-x-2">
                   <div className="whitespace-nowrap">
                     {server.online}/{server.maxPlayers}
@@ -44,7 +47,7 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between space-x-4">
                 <div className="overflow-hidden max-w-[75%]">
                   <McText size={'xs'} className="truncate">
                     {server.description || (server.newDescription as any) || ''}
