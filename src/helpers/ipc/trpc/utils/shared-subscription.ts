@@ -18,7 +18,6 @@ export class SharedSubscription<T> {
       if (!this.interval) {
         this.interval = setInterval(() => {
           const data = this.generator()
-          console.log(`🚀 ~ SharedSubscription ~ observers:`, this.observers.size)
           this.observers.forEach((obs) => obs.next(data))
         }, this.intervalMs)
       }
