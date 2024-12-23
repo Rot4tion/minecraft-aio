@@ -89,9 +89,6 @@ importers:
       lucide-react:
         specifier: ^0.468.0
         version: 0.468.0(react@18.3.1)
-      mctext-react:
-        specifier: ^1.1.0
-        version: 1.1.0(react@18.3.1)
       minecraft-protocol:
         specifier: ^1.51.0
         version: 1.51.0(encoding@0.1.13)
@@ -3379,11 +3376,6 @@ packages:
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
-
-  mctext-react@1.1.0:
-    resolution: {integrity: sha512-cOMQpr08XPLc2m4GNUFLYRfvc7amX9bQqNRIpDMzh0gePv0Hd5uRz3A66jYfM0rRMLyeDbBqdBp4loipIS8icw==}
-    peerDependencies:
-      react: ^15.5.4 || ^16.0.0
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -8239,11 +8231,6 @@ snapshots:
     optional: true
 
   math-intrinsics@1.1.0: {}
-
-  mctext-react@1.1.0(react@18.3.1):
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.3.1
 
   media-typer@0.3.0: {}
 

@@ -53,7 +53,6 @@
     "electron-trpc": "^0.7.1",
     "immer": "^10.1.1",
     "lucide-react": "^0.468.0",
-    "mctext-react": "^1.1.0",
     "minecraft-protocol": "^1.51.0",
     "mineflayer": "^4.23.0",
     "mineflayer-auto-eat": "^5.0.0",

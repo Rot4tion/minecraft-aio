@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/context-menu'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -30,7 +31,7 @@ import { routeConfig } from '@renderer/routes/routes.config'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { formatDistanceToNow } from 'date-fns'
 import { ChartNoAxesColumnIncreasing, Plus, RotateCcw } from 'lucide-react'
-import McText from 'mctext-react'
+import { McText } from '@/components/mc-text-react/McText'
 import { useEffect, useReducer } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -98,7 +99,11 @@ function AddServerDialog() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <DialogClose className="w-full">
+              <Button className="w-full max-w-none" type="submit">
+                Add
+              </Button>
+            </DialogClose>
           </form>
         </Form>
       </DialogContent>
@@ -150,10 +155,11 @@ function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
                 </div>
               </div>
               <div className="flex justify-between">
-                <div className="overflow-hidden">
-                  <McText>{server.description || server.newDescription || ''}</McText>
+                <div className="overflow-hidden w-max-[200px]">
+                  <McText size={'xs'}>
+                    {server.description || (server.newDescription as any) || ''}
+                  </McText>
                 </div>
-
                 <p>{server.version}</p>
               </div>
               <div className="flex justify-between">
