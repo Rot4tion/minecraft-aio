@@ -29,7 +29,7 @@ import { Input } from '@renderer/components/ui/input'
 import { routeConfig } from '@renderer/routes/routes.config'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { formatDistanceToNow } from 'date-fns'
-import { ChartNoAxesColumnIncreasing, RotateCcw } from 'lucide-react'
+import { ChartNoAxesColumnIncreasing, Plus, RotateCcw } from 'lucide-react'
 import McText from 'mctext-react'
 import { useEffect, useReducer } from 'react'
 import { useForm } from 'react-hook-form'
@@ -61,7 +61,9 @@ function AddServerDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Server</Button>
+        <Button className="rounded-full" size={'icon'} variant="ghost">
+          <Plus></Plus>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -174,8 +176,21 @@ function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
           <RotateCcw className="mr-2 w-4 h-4" />
           Refresh
         </ContextMenuItem>
+        <ContextMenuItem inset className="text-red-500 hover:bg-red-100 dark:hover:bg-red-900">
+          <RotateCcw className="mr-2 w-4 h-4" />
+          Delete
+        </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
+  )
+}
+function RefreshAllServers() {
+  const refreshAllServers = useGlobalStore((x) => x.refreshAllServers)
+
+  return (
+    <Button className="rounded-full" size={'icon'} variant="ghost" onClick={refreshAllServers}>
+      <RotateCcw></RotateCcw>
+    </Button>
   )
 }
 function ServersTable() {
@@ -185,8 +200,13 @@ function ServersTable() {
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>MC Servers</CardTitle>
-          <div>
-            <AddServerDialog />
+          <div className="flex">
+            <div>
+              <AddServerDialog />
+            </div>
+            <div>
+              <RefreshAllServers />
+            </div>
           </div>
         </div>
       </CardHeader>

@@ -9,12 +9,13 @@ export interface GlobalState {
   setDataLoaded: (loaded: boolean) => void
   initData: () => Promise<void>
   refreshServer: (serverId: number) => Promise<typeof MCServerTable.$inferSelect>
+  refreshAllServers: () => Promise<void>
   addServer: (
     server: typeof MCServerTable.$inferInsert
   ) => Promise<typeof MCServerTable.$inferInsert>
 }
 
-export const useGlobalStore = create<GlobalState>()((set) => ({
+export const useGlobalStore = create<GlobalState>()((set, get) => ({
   isDataLoaded: false,
   mcServers: [],
   setDataLoaded: (loaded) => set({ isDataLoaded: loaded }),
@@ -36,6 +37,12 @@ export const useGlobalStore = create<GlobalState>()((set) => ({
       }
     })
     return server
+  },
+  refreshAllServers: async () => {
+    const state = get()
+    state.mcServers.forEach(async (server) => {
+      state.refreshServer(server.id)
+    })
   },
   addServer: async (server: typeof MCServerTable.$inferInsert) => {
     const dbServer = await webDb
