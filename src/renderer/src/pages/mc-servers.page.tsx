@@ -30,7 +30,7 @@ import { Input } from '@renderer/components/ui/input'
 import { routeConfig } from '@renderer/routes/routes.config'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { formatDistanceToNow } from 'date-fns'
-import { ChartNoAxesColumnIncreasing, Plus, RotateCcw } from 'lucide-react'
+import { ChartNoAxesColumnIncreasing, Plus, RotateCcw, Trash } from 'lucide-react'
 import { McText } from '@/components/mc-text-react/McText'
 import { useEffect, useReducer } from 'react'
 import { useForm } from 'react-hook-form'
@@ -126,6 +126,7 @@ function LastUpdate({ timestamp }: { timestamp: Date }) {
 }
 function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
   const refreshServer = useGlobalStore((x) => x.refreshServer)
+  const deleteServer = useGlobalStore((x) => x.deleteServer)
 
   return (
     <ContextMenu>
@@ -182,8 +183,12 @@ function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
           <RotateCcw className="mr-2 w-4 h-4" />
           Refresh
         </ContextMenuItem>
-        <ContextMenuItem inset className="text-red-500 hover:bg-red-100 dark:hover:bg-red-900">
-          <RotateCcw className="mr-2 w-4 h-4" />
+        <ContextMenuItem
+          inset
+          className="text-red-500 hover:bg-red-100 dark:hover:bg-red-900"
+          onClick={() => deleteServer(server.id)}
+        >
+          <Trash className="mr-2 w-4 h-4" />
           Delete
         </ContextMenuItem>
       </ContextMenuContent>

@@ -1,6 +1,7 @@
 import { trpcClient } from '@/helpers/ipc/trpc/trpc-client'
 import { MCServerTable } from '@shared/db/schema/mc-server.schema'
 import { webDb } from '@shared/db/webDB'
+import { eq } from 'drizzle-orm'
 import { create } from 'zustand'
 
 export interface GlobalState {
@@ -13,6 +14,7 @@ export interface GlobalState {
   addServer: (
     server: typeof MCServerTable.$inferInsert
   ) => Promise<typeof MCServerTable.$inferInsert>
+  deleteServer: (serverId: number) => Promise<boolean>
 }
 
 export const useGlobalStore = create<GlobalState>()((set, get) => ({
@@ -58,5 +60,15 @@ export const useGlobalStore = create<GlobalState>()((set, get) => ({
       }
     })
     return updatedServer
+  },
+  deleteServer: async (serverId: number) => {
+    await webDb.delete(MCServerTable).where(eq(MCServerTable.id, serverId))
+
+    set((state) => {
+      return {
+        mcServers: state.mcServers.filter((server) => server.id !== serverId)
+      }
+    })
+    return true
   }
 }))
