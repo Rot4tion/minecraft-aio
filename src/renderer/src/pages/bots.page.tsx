@@ -7,7 +7,7 @@ function BotTable() {
   const mcServers = useGlobalStore((x) => x.mcServers)
   return (
     <div className="grid grid-cols-1 auto-rows-auto gap-2 md:grid-cols-2">
-      {/* {mcServers.map((server) => (
+      {/* {mcServers.map((server) => (`
         <ServerCard key={server.id} server={server}></ServerCard>
       ))} */}
     </div>

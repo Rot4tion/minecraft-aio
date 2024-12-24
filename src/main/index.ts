@@ -11,7 +11,7 @@ import { createIPCHandler } from 'electron-trpc/main'
 import { appRouter } from '../helpers/ipc/trpc/app-router'
 
 const inDevelopment = process.env.NODE_ENV === 'development'
-// const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({

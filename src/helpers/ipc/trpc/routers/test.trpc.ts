@@ -1,3 +1,5 @@
+import { createActor } from 'xstate'
+import { botMachine } from '../../../../shared/state-machines/bot-machine'
 import { publicProcedure, router } from '../trpc'
 import { SharedSubscription as TRPCSharedSubscription } from '../utils/shared-subscription'
 
@@ -7,9 +9,19 @@ const testSubscription = new TRPCSharedSubscription<string>(
   () => `Test data: ${new Date().toISOString()}`
 )
 
+const actor = createActor(botMachine)
+actor.subscribe((state) => {
+  console.group('State update')
+  console.log('state.value', state.value)
+})
+
+actor.start()
+
 export const testTRPC = router({
   testSubscription: publicProcedure.subscription(() => {
     return testSubscription.subscribe()
   }),
-  test: publicProcedure.mutation(() => {})
+  test: publicProcedure.mutation(() => {
+    actor.send({ type: 'start' })
+  })
 })
