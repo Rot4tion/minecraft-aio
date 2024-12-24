@@ -3,6 +3,7 @@ import { pathfinder, Movements, goals } from 'mineflayer-pathfinder'
 import { DEFAULT_BOT_USERNAME } from '../constants'
 const { GoalNear } = goals
 class MCBotManager {
+  public static createMCBot(options: any) {}
   test() {
     const b = mineflayer.createBot({
       username: DEFAULT_BOT_USERNAME,

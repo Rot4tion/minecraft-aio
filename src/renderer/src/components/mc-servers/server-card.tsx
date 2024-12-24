@@ -19,7 +19,7 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
-        <Card className="text-xs">
+        <Card className="text-xs hover:bg-secondary">
           <CardHeader className="items-end p-0"></CardHeader>
           <CardContent className="flex overflow-hidden p-2 space-x-2">
             <img

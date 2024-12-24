@@ -4,7 +4,8 @@ import { createRoute } from '@tanstack/react-router'
 import DashboardPage from '../pages/dashboard.page'
 import { RootRoute } from './__root'
 import { routeConfig } from './routes.config'
-import McServersPage from '@renderer/pages/mc-servers.page'
+import McServersPage from '@renderer/pages/servers.page'
+import BotsPage from '@renderer/pages/bots.page'
 
 // TODO: Steps to add a new route:
 // 1. Create a new page component in the '../pages/' directory (e.g., NewPage.tsx)
@@ -36,6 +37,11 @@ export const McServerRoute = createRoute({
   path: routeConfig.mcServers.path,
   component: McServersPage
 })
+export const BotsRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: routeConfig.bots.path,
+  component: BotsPage
+})
 export const SettingsRoute = createRoute({
   getParentRoute: () => RootRoute,
   path: routeConfig.settings.path,
@@ -47,4 +53,10 @@ export const TestRoute = createRoute({
   component: TestPage
 })
 
-export const rootTree = RootRoute.addChildren([HomeRoute, McServerRoute, SettingsRoute, TestRoute])
+export const rootTree = RootRoute.addChildren([
+  HomeRoute,
+  McServerRoute,
+  BotsRoute,
+  SettingsRoute,
+  TestRoute
+])

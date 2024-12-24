@@ -7,6 +7,10 @@ export const routeConfig = {
     path: '/mc-servers',
     label: 'Servers'
   },
+  bots: {
+    path: '/bots',
+    label: 'Bots'
+  },
   settings: {
     path: '/settings',
     label: 'Settings'

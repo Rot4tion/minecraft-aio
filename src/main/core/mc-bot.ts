@@ -19,6 +19,7 @@ export class MCBot {
   }
   public static createMCBot(options: MCBotOptions): MCBot {
     const { enablePathfinder, enableAutoEat, ...opts } = options
+
     const b = mineflayer.createBot(opts)
     const mcb = new MCBot(b, options)
 

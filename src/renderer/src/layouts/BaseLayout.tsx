@@ -18,7 +18,7 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
   }, [])
   return (
     <AdminPanelLayout>
-      <main>{children}</main>
+      <main className="cursor-default">{children}</main>
     </AdminPanelLayout>
   )
 }

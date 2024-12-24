@@ -22,12 +22,8 @@ export default function McServersPage() {
       title={routeConfig.mcServers.label}
       actions={
         <div className="flex">
-          <div>
-            <AddServerDialog />
-          </div>
-          <div>
-            <RefreshAllServersButton />
-          </div>
+          <AddServerDialog />
+          <RefreshAllServersButton />
         </div>
       }
     >
