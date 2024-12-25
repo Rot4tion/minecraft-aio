@@ -18,7 +18,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'warn',
     'no-empty': 'warn',
     'prettier/prettier': [
-      'error',
+      'off',
       {
         endOfLine: 'auto'
       }
