@@ -1,5 +1,5 @@
 import { Bot, BotOptions, createBot } from 'mineflayer'
-import { assign, fromPromise, setup } from 'xstate'
+import { assign, createMachine, fromPromise, setup } from 'xstate'
 
 export const botMachine = setup({
   types: {
@@ -31,9 +31,6 @@ export const botMachine = setup({
       invoke: {
         onDone: {
           target: 'wating',
-          actions: assign({
-            options: ({ event }) => event.output
-          }),
 
           reenter: true
         },

@@ -2,8 +2,6 @@ import { createActor } from 'xstate'
 import { testMachine } from '../../../../shared/state-machines/test-machine'
 import { publicProcedure, router } from '../trpc'
 import { SharedSubscription as TRPCSharedSubscription } from '../utils/shared-subscription'
-import { createBot } from 'mineflayer'
-import { DEFAULT_BOT_USERNAME } from '../../../../main/constants'
 
 // Create a shared subscription instance
 const testSubscription = new TRPCSharedSubscription<string>(
@@ -11,18 +9,21 @@ const testSubscription = new TRPCSharedSubscription<string>(
   () => `Test data: ${new Date().toISOString()}`
 )
 
-const bot = createBot({ username: DEFAULT_BOT_USERNAME })
-const actor = createActor(testMachine, { input: { bot } })
+const actor = createActor(testMachine)
 actor.subscribe((state) => {
-  console.log('state.value', state.value)
+  console.log('🚀 ~ actor.subscribe ~ state.value:', state.value)
+  console.log('🚀 ~ actor.subscribe ~ state.context:', state.context)
 })
 actor.start()
-bot.on('physicsTick', () => {
+
+for (let i = 0; i < 10; i++) {
   actor.send({ type: 'physicsTick' })
-})
+}
 export const testTRPC = router({
   testSubscription: publicProcedure.subscription(() => {
     return testSubscription.subscribe()
   }),
-  test: publicProcedure.mutation(() => {})
+  test: publicProcedure.mutation(() => {
+    actor.send({ type: 'physicsTick' })
+  })
 })
