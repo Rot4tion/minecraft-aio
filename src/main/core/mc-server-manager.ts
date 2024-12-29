@@ -26,8 +26,7 @@ class MCServerManager {
   async ping(options: PingOptions & { host: string }) {
     const data: typeof MCServerTable.$inferInsert = {
       host: options.host,
-      port: options.port || 25565,
-      lastPing: new Date()
+      port: options.port || 25565
     }
     const res: any = await protocol.ping({ host: options.host, port: options.port || 25565 })
     if (res.maxPlayers != undefined) {
@@ -47,6 +46,7 @@ class MCServerManager {
       data.online = newResult.players.online
       data.maxPlayers = newResult.players.max
     }
+    data.lastPing = new Date()
     return data
   }
 }

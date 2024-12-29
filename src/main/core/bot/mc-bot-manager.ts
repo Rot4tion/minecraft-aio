@@ -1,9 +1,34 @@
+import { StressTestOptions } from '@shared/type'
+import { getRandomUsername } from '@shared/utils'
 import mineflayer from 'mineflayer'
-import { pathfinder, Movements, goals } from 'mineflayer-pathfinder'
-import { DEFAULT_BOT_USERNAME } from '../constants'
+import { Movements, goals, pathfinder } from 'mineflayer-pathfinder'
+import { DEFAULT_BOT_USERNAME } from '../../constants'
 const { GoalNear } = goals
 class MCBotManager {
+  stressTestBots: mineflayer.Bot[] = []
   public static createMCBot(options: any) {}
+  clearStressTestBots() {
+    this.stressTestBots.forEach((bot) => bot.quit())
+    this.stressTestBots = []
+  }
+  async createStressTestBot(amount: number, options?: StressTestOptions) {
+    this.clearStressTestBots()
+    for (let i = 0; i < amount; i++) {
+      const bot = mineflayer.createBot({
+        ...options,
+        username: getRandomUsername(options?.namePrefix),
+        physicsEnabled: false
+      })
+      bot.once('spawn', () => {
+        console.log(`Spawned bot ${bot.username}`)
+        bot.removeAllListeners()
+      })
+      this.stressTestBots.push(bot)
+      if (options?.delay) {
+        await new Promise((resolve) => setTimeout(resolve, options.delay))
+      }
+    }
+  }
   test() {
     const b = mineflayer.createBot({
       username: DEFAULT_BOT_USERNAME,
