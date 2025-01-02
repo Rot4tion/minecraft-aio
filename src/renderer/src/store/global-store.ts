@@ -27,7 +27,7 @@ export const useGlobalStore = create<GlobalState>()((set, get) => ({
     set({ isDataLoaded: true })
   },
   refreshServer: async (serverId: number) => {
-    const server = await trpcClient.mcServerManager.refresh.mutate({ serverId })
+    const server = await trpcClient.serverManager.refresh.mutate({ serverId })
     set((state) => {
       const idx = state.mcServers.findIndex((x) => x.id === server.id)
       if (idx === -1) {
@@ -52,7 +52,7 @@ export const useGlobalStore = create<GlobalState>()((set, get) => ({
       .values(server)
       .returning({ id: MCServerTable.id })
       .get()
-    const updatedServer = await trpcClient.mcServerManager.refresh.mutate({ serverId: dbServer.id })
+    const updatedServer = await trpcClient.serverManager.refresh.mutate({ serverId: dbServer.id })
     set((state) => {
       state.mcServers.push(updatedServer)
       return {

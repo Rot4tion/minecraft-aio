@@ -1,11 +1,11 @@
-import TestPage from '@renderer/pages/test.page'
+import BotsPage from '@renderer/pages/bots.page'
+import McServersPage from '@renderer/pages/servers.page'
 import SettingsPage from '@renderer/pages/setting.page'
+import TestPage from '@renderer/pages/test.page'
 import { createRoute } from '@tanstack/react-router'
 import DashboardPage from '../pages/dashboard.page'
 import { RootRoute } from './__root'
 import { routeConfig } from './routes.config'
-import McServersPage from '@renderer/pages/servers.page'
-import BotsPage from '@renderer/pages/bots.page'
 
 // TODO: Steps to add a new route:
 // 1. Create a new page component in the '../pages/' directory (e.g., NewPage.tsx)

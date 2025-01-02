@@ -37,7 +37,7 @@ export function StressTestDialog({
   server: GlobalState['mcServers'][number]
   setOpen?: (open: boolean) => void
 }) {
-  const { mutate } = trpcReact.mcBotManager.createStressTestBot.useMutation()
+  const { mutate } = trpcReact.botManager.createStressTestBot.useMutation()
   const form = useForm<z.infer<typeof StressTestSchema>>({
     resolver: zodResolver(StressTestSchema),
     defaultValues: {

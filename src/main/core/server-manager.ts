@@ -3,7 +3,7 @@ import { db } from '../../shared/db/db'
 import { MCServerTable } from '../../shared/db/schema/mc-server.schema'
 import { eq } from 'drizzle-orm'
 
-class MCServerManager {
+class ServerManager {
   async refresh(serverId: number) {
     const server = await db.select().from(MCServerTable).where(eq(MCServerTable.id, serverId)).get()
     if (!server) {
@@ -50,5 +50,5 @@ class MCServerManager {
     return data
   }
 }
-const mcServerManager = new MCServerManager()
-export { mcServerManager }
+const serverManager = new ServerManager()
+export { serverManager }

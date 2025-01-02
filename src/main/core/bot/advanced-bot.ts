@@ -4,24 +4,24 @@ import { mineflayer as mineflayerViewer } from 'prismarine-viewer'
 import { loader as autoEat } from 'mineflayer-auto-eat'
 const { GoalNear } = goals
 
-export interface MCBotOptions extends mineflayer.BotOptions {
+export interface AdvancedBotOptions extends mineflayer.BotOptions {
   enablePathfinder?: boolean
   enableAutoEat?: boolean
 }
 
-export class MCBot {
+export class AdvancedBot {
   bot: mineflayer.Bot
-  options: MCBotOptions
-  constructor(bot: mineflayer.Bot, options: MCBotOptions) {
+  options: AdvancedBotOptions
+  constructor(bot: mineflayer.Bot, options: AdvancedBotOptions) {
     this.bot = bot
 
     this.options = options
   }
-  public static createMCBot(options: MCBotOptions): MCBot {
+  public static createAdvancedBot(options: AdvancedBotOptions): AdvancedBot {
     const { enablePathfinder, enableAutoEat, ...opts } = options
 
     const b = mineflayer.createBot(opts)
-    const mcb = new MCBot(b, options)
+    const ab = new AdvancedBot(b, options)
 
     if (enablePathfinder) {
       b.loadPlugin(pathfinder)
@@ -55,7 +55,7 @@ export class MCBot {
     b.on('error', (err: Error) => {
       console.error('Bot error:', err.message)
     })
-    return mcb
+    return ab
   }
   serverInfo(log = false) {
     const b = this.bot

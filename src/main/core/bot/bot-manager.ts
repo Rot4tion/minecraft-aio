@@ -72,5 +72,5 @@ class MCBotManager {
     })
   }
 }
-const mcBotManager = new MCBotManager()
-export { mcBotManager }
+const botManager = new MCBotManager()
+export { botManager }

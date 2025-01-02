@@ -1,9 +1,9 @@
-import { mcBotManager } from '../../../../main/core/bot/mc-bot-manager'
+import { botManager } from '../../../../main/core/bot/bot-manager'
 import { StressTestOptions } from '../../../../shared/type'
 import { publicProcedure, router } from '../trpc'
 
-export const mcBotManagerTRPC = router({
+export const botManagerTRPC = router({
   createStressTestBot: publicProcedure
     .input((x) => x as { amount: number; options?: StressTestOptions })
-    .mutation(({ input: { amount, options } }) => mcBotManager.createStressTestBot(amount, options))
+    .mutation(({ input: { amount, options } }) => botManager.createStressTestBot(amount, options))
 })

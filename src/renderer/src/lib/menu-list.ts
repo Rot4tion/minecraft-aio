@@ -1,5 +1,5 @@
 import { routeConfig } from '@renderer/routes/routes.config'
-import { Bot, FlaskConical, LayoutGrid, LucideIcon, Server, Settings } from 'lucide-react'
+import { Bot, Bug, FlaskConical, LayoutGrid, LucideIcon, Server, Settings } from 'lucide-react'
 
 type Submenu = {
   href: string

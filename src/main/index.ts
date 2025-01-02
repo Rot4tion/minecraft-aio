@@ -14,6 +14,8 @@ import log from 'electron-log'
 const inDevelopment = process.env.NODE_ENV === 'development'
 // const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
 function createWindow(): void {
+  // Logs
+  log.initialize()
   log.transports.file.level = 'debug'
   autoUpdater.logger = log
   autoUpdater.checkForUpdatesAndNotify()
@@ -38,6 +40,7 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+
   createIPCHandler({
     router: appRouter,
     windows: [mainWindow],

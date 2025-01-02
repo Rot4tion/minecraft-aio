@@ -7,8 +7,8 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@renderer/components/ui/tooltip'
-import { useSidebar } from '@renderer/hooks/use-sidebar'
-import { useStore } from '@renderer/hooks/use-store'
+import { useSidebar } from '@renderer/store/use-sidebar'
+import { useStore } from '@renderer/store/use-store'
 import { routeConfig } from '@renderer/routes/routes.config'
 
 export default function SettingsPage() {
