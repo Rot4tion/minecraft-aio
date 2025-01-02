@@ -51,5 +51,6 @@ pnpm build:win
 - [ReactJS](https://react.dev/) - UI
 - [TailwindCSS](https://tailwindcss.com/) - Styling
 - [Typescript](https://www.typescriptlang.org/) - type safe
+- [TRPC](https://trpc.io/) - End-to-end typesafe APIs
 - [Drizzle](https://drizzle-orm.org/) - DB ORM
 - [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) - Local DB
