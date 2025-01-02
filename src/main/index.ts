@@ -82,7 +82,7 @@ app.whenReady().then(async () => {
       forceDownload: true,
       loadExtensionOptions: { allowFileAccess: true }
     })
-      .then((ext) => log.debug(`Added Extension: ${ext}`))
+      .then((ext) => log.debug(`Added Extension: ${ext.map((x) => x.name).join(', ')}`))
       .catch((err) => log.debug(`Error adding extension: ${err}`))
   }
 
