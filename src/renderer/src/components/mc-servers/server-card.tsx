@@ -15,7 +15,7 @@ import { StressTestDialog } from '../mc-bot/stress-test-dialog'
 import { useConfirm } from '../react-confirm-dialog/confirm-dialog'
 import { useState } from 'react'
 import defaultServerFavicon from '@renderer/assets/default_server_favicon.png'
-export function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
+export function ServerCard({ server }: { server: GlobalState['servers'][number] }) {
   const refreshServer = useGlobalStore((x) => x.refreshServer)
   const deleteServer = useGlobalStore((x) => x.deleteServer)
   const [openStressTest, setOpenStressTest] = useState(false)
@@ -24,11 +24,6 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
 
   return (
     <div>
-      <StressTestDialog
-        server={server}
-        open={openStressTest}
-        setOpen={setOpenStressTest}
-      ></StressTestDialog>
       <ContextMenu>
         <ContextMenuTrigger asChild>
           <Card className="text-xs hover:bg-secondary">
@@ -119,6 +114,11 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
+      <StressTestDialog
+        server={server}
+        open={openStressTest}
+        setOpen={setOpenStressTest}
+      ></StressTestDialog>
     </div>
   )
 }

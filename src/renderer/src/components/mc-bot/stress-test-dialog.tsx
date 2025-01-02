@@ -34,7 +34,7 @@ export function StressTestDialog({
   setOpen
 }: {
   open?: boolean
-  server: GlobalState['mcServers'][number]
+  server: GlobalState['servers'][number]
   setOpen?: (open: boolean) => void
 }) {
   const { mutate } = trpcReact.botManager.createStressTestBot.useMutation()
@@ -53,7 +53,7 @@ export function StressTestDialog({
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger></DialogTrigger>
+      <DialogTrigger asChild></DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create Stress Test Bot</DialogTitle>

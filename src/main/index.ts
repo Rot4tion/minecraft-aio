@@ -1,8 +1,12 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, session, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
-
+import {
+  installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS
+} from 'electron-devtools-installer'
 import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
 
 import { execute, runMigrate } from '../shared/db/db'
@@ -11,8 +15,8 @@ import { createIPCHandler } from 'electron-trpc/main'
 import { appRouter } from '../helpers/ipc/trpc/app-router'
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
-const inDevelopment = process.env.NODE_ENV === 'development'
-// const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
+const isDev = process.env.NODE_ENV === 'development'
+
 function createWindow(): void {
   // Logs
   log.initialize()
@@ -26,7 +30,7 @@ function createWindow(): void {
     show: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      devTools: inDevelopment,
+      devTools: isDev,
       contextIsolation: true,
       nodeIntegration: true,
       nodeIntegrationInSubFrames: false,
@@ -69,6 +73,18 @@ function createWindow(): void {
 app.whenReady().then(async () => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+
+  log.info('App Starting')
+  log.info(app.getPath('userData'))
+
+  if (isDev) {
+    installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS], {
+      forceDownload: true,
+      loadExtensionOptions: { allowFileAccess: true }
+    })
+      .then((ext) => log.debug(`Added Extension: ${ext}`))
+      .catch((err) => log.debug(`Error adding extension: ${err}`))
+  }
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.

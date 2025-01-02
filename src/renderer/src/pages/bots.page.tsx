@@ -4,7 +4,7 @@ import { routeConfig } from '@renderer/routes/routes.config'
 import { useGlobalStore } from '@renderer/store/global-store'
 
 function BotTable() {
-  const mcServers = useGlobalStore((x) => x.mcServers)
+  const mcServers = useGlobalStore((x) => x.servers)
   return (
     <div className="grid grid-cols-1 auto-rows-auto gap-2 md:grid-cols-2">
       {/* {mcServers.map((server) => (
