@@ -9,10 +9,14 @@ import { execute, runMigrate } from '../shared/db/db'
 
 import { createIPCHandler } from 'electron-trpc/main'
 import { appRouter } from '../helpers/ipc/trpc/app-router'
-
+import { autoUpdater } from 'electron-updater'
+import log from 'electron-log'
 const inDevelopment = process.env.NODE_ENV === 'development'
 // const mcbot = MCBot.createMCBot({ enablePathfinder: true, username: DEFAULT_BOT_USERNAME })
 function createWindow(): void {
+  log.transports.file.level = 'debug'
+  autoUpdater.logger = log
+  autoUpdater.checkForUpdatesAndNotify()
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1200,
