@@ -14,7 +14,7 @@ import { ClickToCopy } from '../click-to-copy'
 import { StressTestDialog } from '../mc-bot/stress-test-dialog'
 import { useConfirm } from '../react-confirm-dialog/confirm-dialog'
 import { useState } from 'react'
-
+import defaultServerFavicon from '@renderer/assets/default_server_favicon.png'
 export function ServerCard({ server }: { server: GlobalState['mcServers'][number] }) {
   const refreshServer = useGlobalStore((x) => x.refreshServer)
   const deleteServer = useGlobalStore((x) => x.deleteServer)
@@ -36,7 +36,7 @@ export function ServerCard({ server }: { server: GlobalState['mcServers'][number
             <CardContent className="flex overflow-hidden p-2 space-x-2">
               <img
                 className="flex-shrink-0 w-12 h-12"
-                src={server.favicon || '/src/assets/default_server_favicon.png'}
+                src={server.favicon || defaultServerFavicon}
                 alt="default favicon"
               />
               <div className="w-full min-w-0">
