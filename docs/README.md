@@ -11,12 +11,13 @@ This project are based on [mineflayer](https://github.com/PrismarineJS/mineflaye
 
 ## Roadmap
 
-- [ ] Auto update
 - [ ] Full control of bot from UI (move, interact, attack,...)
 - [ ] Builder bots from schematic file
 - [ ] Import external plugins
-- [ ] Develop bot behavior with no code
+- [ ] Develop bot behavior with no code system
 - [ ] Manager local servers
+  
+[More](https://github.com/users/Rot4tion/projects/8)
 
 ## Develop
 
