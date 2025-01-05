@@ -9,7 +9,7 @@ import {
 import { ContextMenuLabel } from '@radix-ui/react-context-menu'
 import { GlobalState, useGlobalStore } from '@renderer/store/global-store'
 import { ChartNoAxesColumnIncreasing, RotateCcw, Sword, Trash } from 'lucide-react'
-import { LastUpdate } from './last-update'
+import { LastUpdate } from '../last-update'
 import { ClickToCopy } from '../click-to-copy'
 import { StressTestDialog } from '../mc-bot/stress-test-dialog'
 import { useConfirm } from '../react-confirm-dialog/confirm-dialog'

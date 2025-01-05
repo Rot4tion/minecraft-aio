@@ -1,11 +1,11 @@
 import protocol, { NewPingResult, OldPingResult, PingOptions } from 'minecraft-protocol'
 import { db } from '../../shared/db/db'
-import { MCServerTable } from '../../shared/db/schema/mc-server.schema'
+import { ServerTable } from '../../shared/db/schema/server.schema'
 import { eq } from 'drizzle-orm'
 
 class ServerManager {
   async refresh(serverId: number) {
-    const server = await db.select().from(MCServerTable).where(eq(MCServerTable.id, serverId)).get()
+    const server = await db.select().from(ServerTable).where(eq(ServerTable.id, serverId)).get()
     if (!server) {
       throw new Error('Server not found')
     }
@@ -16,15 +16,15 @@ class ServerManager {
       data = { lastPing: new Date(), latency: -1, online: 0, maxPlayers: 0 }
     }
     const dbRes = await db
-      .update(MCServerTable)
+      .update(ServerTable)
       .set(data)
-      .where(eq(MCServerTable.id, serverId))
+      .where(eq(ServerTable.id, serverId))
       .returning()
       .get()
     return dbRes
   }
   async ping(options: PingOptions & { host: string }) {
-    const data: typeof MCServerTable.$inferInsert = {
+    const data: typeof ServerTable.$inferInsert = {
       host: options.host,
       port: options.port || 25565
     }

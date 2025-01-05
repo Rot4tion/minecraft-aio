@@ -1,6 +1,6 @@
 import { integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 
-export const MCServerTable = sqliteTable(
+export const ServerTable = sqliteTable(
   'mc_servers',
   {
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),

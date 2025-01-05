@@ -38,10 +38,14 @@ export function getMenuList(pathname: string): Group[] {
           submenus: []
         },
         {
-          href: routeConfig.bots.path,
-          label: routeConfig.bots.label,
+          href: '/bot',
+          label: 'Bots',
           icon: Bot,
-          submenus: []
+          active: true,
+          submenus: [
+            { href: routeConfig.accounts.path, label: routeConfig.accounts.label },
+            { href: routeConfig.configs.path, label: routeConfig.configs.label }
+          ]
         },
         {
           href: routeConfig.settings.path,

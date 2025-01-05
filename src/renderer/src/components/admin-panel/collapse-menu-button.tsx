@@ -51,7 +51,7 @@ export function CollapseMenuButton({
           className="justify-start w-full h-10"
         >
           <div className="flex justify-between items-center w-full">
-            <div className="flex items-center">
+            <div className="flex gap-2 items-center">
               <span className="mr-4">
                 <Icon size={18} />
               </span>
@@ -111,7 +111,7 @@ export function CollapseMenuButton({
                 className="justify-start mb-1 w-full h-10"
               >
                 <div className="flex justify-between items-center w-full">
-                  <div className="flex items-center">
+                  <div className="flex gap-2 items-center">
                     <span className={cn(isOpen === false ? '' : 'mr-4')}>
                       <Icon size={18} />
                     </span>

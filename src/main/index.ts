@@ -1,20 +1,18 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { app, BrowserWindow, ipcMain, session, shell } from 'electron'
-import { join } from 'path'
-import icon from '../../resources/icon.png?asset'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import {
   installExtension,
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS
 } from 'electron-devtools-installer'
+import { join } from 'path'
+import icon from '../../resources/icon.png?asset'
 import { DATABASE_EXECUTE_CHANNEL } from '../helpers/ipc/api/api-channels'
-
 import { execute, runMigrate } from '../shared/db/db'
-
-import { createIPCHandler } from 'electron-trpc/main'
-import { appRouter } from '../helpers/ipc/trpc/app-router'
-import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
+import { createIPCHandler } from 'electron-trpc/main'
+import { autoUpdater } from 'electron-updater'
+import { appRouter } from '../helpers/ipc/trpc/app-router'
 const isDev = process.env.NODE_ENV === 'development'
 
 function createWindow(): void {

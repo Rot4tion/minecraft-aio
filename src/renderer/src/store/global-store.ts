@@ -1,5 +1,5 @@
 import { trpcClient } from '@/helpers/ipc/trpc/trpc-client'
-import { MCServerTable } from '@shared/db/schema/mc-server.schema'
+import { ServerTable } from '@shared/db/schema/server.schema'
 import { webDb } from '@shared/db/webDB'
 import { eq } from 'drizzle-orm'
 import { create } from 'zustand'
@@ -7,14 +7,12 @@ import { devtools } from 'zustand/middleware'
 
 export interface GlobalState {
   isDataLoaded: boolean
-  servers: (typeof MCServerTable.$inferSelect)[]
+  servers: (typeof ServerTable.$inferSelect)[]
   setDataLoaded: (loaded: boolean) => void
   initData: () => Promise<void>
-  refreshServer: (serverId: number) => Promise<typeof MCServerTable.$inferSelect>
+  refreshServer: (serverId: number) => Promise<typeof ServerTable.$inferSelect>
   refreshAllServers: () => Promise<void>
-  addServer: (
-    server: typeof MCServerTable.$inferInsert
-  ) => Promise<typeof MCServerTable.$inferInsert>
+  addServer: (server: typeof ServerTable.$inferInsert) => Promise<typeof ServerTable.$inferInsert>
   deleteServer: (serverId: number) => Promise<boolean>
 }
 
@@ -25,7 +23,7 @@ export const useGlobalStore = create(
       servers: [],
       setDataLoaded: (loaded) => set({ isDataLoaded: loaded }),
       initData: async () => {
-        const mcServers = await webDb.select().from(MCServerTable)
+        const mcServers = await webDb.select().from(ServerTable)
         set({ servers: mcServers })
         set({ isDataLoaded: true })
       },
@@ -49,11 +47,11 @@ export const useGlobalStore = create(
           state.refreshServer(server.id)
         })
       },
-      addServer: async (server: typeof MCServerTable.$inferInsert) => {
+      addServer: async (server: typeof ServerTable.$inferInsert) => {
         const dbServer = await webDb
-          .insert(MCServerTable)
+          .insert(ServerTable)
           .values(server)
-          .returning({ id: MCServerTable.id })
+          .returning({ id: ServerTable.id })
           .get()
         const updatedServer = await trpcClient.serverManager.refresh.mutate({
           serverId: dbServer.id
@@ -67,7 +65,7 @@ export const useGlobalStore = create(
         return updatedServer
       },
       deleteServer: async (serverId: number) => {
-        await webDb.delete(MCServerTable).where(eq(MCServerTable.id, serverId))
+        await webDb.delete(ServerTable).where(eq(ServerTable.id, serverId))
 
         set((state) => {
           return {

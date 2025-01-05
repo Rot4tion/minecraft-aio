@@ -12,6 +12,8 @@ export function LastUpdate({ timestamp }: { timestamp: Date }) {
 
     return () => clearInterval(interval)
   }, [])
-
-  return <p>{formatDistanceToNow(timestamp, { addSuffix: true, includeSeconds: true })}</p>
+  if (!timestamp) return null
+  return (
+    <p>Last update {formatDistanceToNow(timestamp, { addSuffix: true, includeSeconds: true })}</p>
+  )
 }
